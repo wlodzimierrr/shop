@@ -1,9 +1,7 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom"
-import './App.css'
 
 // Components
 import Header from "./components/Header"
-import Navbar from "./components/Navbar"
 import Footer from "./components/Footer"
 
 
@@ -11,7 +9,8 @@ import Footer from "./components/Footer"
 import Home from "./pages/Home"
 import Category from "./pages/Category" 
 import Product from "./pages/Product"
-
+import Cart from "./pages/Cart"
+import Login from "./pages/Login"
 
 export default function App() {
   return (
@@ -20,14 +19,14 @@ export default function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/category" element={<Category />}/>
-        <Route path="/category" element={<Category />}/>
-        <Route path="/category" element={<Category />}/>
+        <Route path="/category1" element={<Category category={""} banner={""}/>}/>
+        <Route path="/category2" element={<Category category={""} banner={""}/>}/>
+        <Route path="/category3" element={<Category category={""} banner={""}/>}/>
         <Route path="/product" element={<Product />}>
           <Route path=":productId" element={<Product />}/>
         </Route>
-        {/* <Route path="/cart-page" element={<Cart />}/>
-        <Route path="/login" element={<Login />}/> */}
+        <Route path="/cart-page" element={<Cart />}/>
+        <Route path="/login" element={<Login />}/>
       </Routes>
       <Footer />
     </BrowserRouter>
