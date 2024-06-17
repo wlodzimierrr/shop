@@ -16,7 +16,7 @@ const { PORT } = require('./config');
 // Image storage engine
 const upload = require('./utility/multer');
 app.use('/images', express.static('uploads/images'));
-app.post('/upload', upload.single('product'), (req, res) => {
+app.post('/api/upload', upload.single('product'), (req, res) => {
     res.json({
         success: 1,
         image_url: `http://localhost:${PORT}/images/${req.file.filename}`,

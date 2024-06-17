@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import BASE_URL from '../../config'
+
 // Components
 import upload_area from '../assets/upload_area.svg'
 
@@ -26,33 +28,51 @@ const AddProduct = () => {
   }
 
   const Add_Product = async () => {
-    let responseData;
-    let product = productDetails;
+    try {
+      let formData = new FormData();
+      formData.append('product', image);
 
-    let formData = new FormData();
-    formData.append('product', image);
+      const uploadResponse = await fetch(`${BASE_URL}/upload`, {
+        method: 'POST',
+        body: formData,
+      });
+      const uploadData = await uploadResponse.json();
 
-    await fetch(`${BASE_URL}/products/upload`, {
-      method: 'Post',
-      headers: {
-        Accept: 'application/json',
-      },
-      body: formData,
-    }).then((resp) => resp.json()).then((data) => {
-      responseData = data
-    })
-    if (responseData.success) {
-      product.image = responseData.image_url;
+      if (uploadData.success) {
+        const updatedProduct = { ...productDetails, image: uploadData.image_url };
+
+        const addProductResponse = await fetch(`${BASE_URL}/products/addproduct`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(updatedProduct),
+        });
+        const addProductData = await addProductResponse.json();
+
+        if (addProductData.success) {
+          // Clear input fields and reset state
+          setProductDetails({
+            name: '',
+            image: '',
+            category: 'category1',
+            new_price: '',
+            old_price: '',
+          });
+          setImage(null);
+
+          alert('Product Added');
+        } else {
+          alert('Failed to add product');
+        }
+      } else {
+        alert('Failed to upload image');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      alert('An error occurred');
     }
-    await fetch(`${BASE_URL}/products/addproduct`, {
-      method: 'Post',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(product)
-    }).then((resp) => resp.json()).then((data) => {data.success?alert("Product Added"):alert("Upload Failed")})
-  }
+  };
 
   return (
     <div className='p-8 box-border bg-white w-full rounded-sm mt-5 lg:ml-5'>

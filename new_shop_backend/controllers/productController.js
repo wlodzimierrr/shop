@@ -12,7 +12,7 @@ exports.addProduct = async (req, res, next) => {
             id = 1;
         }
     
-        const product = new ProductModel({
+        const product = ProductModel({
             id,
             name: req.body.name,
             image: req.body.image,
@@ -24,16 +24,16 @@ exports.addProduct = async (req, res, next) => {
         await product.save();
         res.json({ success: true, name: req.body.name });
     } catch (error) {
-        next(error);
+        throw error;
     }
 };
 
 exports.deleteProduct = async (req, res, next) => {
     try{
-        await Product.findOneAndDelete({ id: req.body.id });
+        await ProductModel.findOneAndDelete({ id: req.body.id });
         res.json({ success: true, name: req.body.name });
     } catch (error) {
-        next(error);
+        throw error;
     }
 };
 
@@ -42,7 +42,7 @@ exports.getAllProducts = async (req, res, next) => {
         let products = await ProductModel.find({});
         res.send(products);
     } catch (error) {
-        next(error)
+        throw error;
     }
 };
 
@@ -52,7 +52,7 @@ exports.getNewCollection = async (req, res, next) => {
         let newCollection = products.slice(-8);
         res.send(newCollection);
     } catch (error) {
-        next(error);
+        throw error;
     }
 };
 
@@ -62,6 +62,6 @@ exports.getPopularProducts = async (req, res, next) => {
         let popularProducts = products.slice(0, 4);
         res.send(popularProducts);
     } catch (error) {
-        next(error)
+        throw error;
     }
 };

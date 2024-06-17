@@ -7,7 +7,7 @@ exports.addToCart = async (req, res, next) => {
         await UserModel.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
         res.json({ message: "Added" });
     } catch (error) {
-        next(error)
+        throw error;
     }
 };
 
@@ -19,7 +19,7 @@ exports.removeFromCart = async (req, res, next) => {
         await UserModel.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
         res.json({ message: "Removed" });
     } catch (error) {
-        next(error);
+        throw error;
     }
 };
 
@@ -28,6 +28,6 @@ exports.getCart = async (req, res) => {
         let userData = await UserModel.findOne({ _id: req.user.id });
          res.json(userData.cartData);
     } catch (error) {
-        next(error)
+        throw error;
     }
 };

@@ -36,7 +36,7 @@ exports.signup = async (req, res, next) => {
         const token = jwt.sign(data, JWT_SECRET);
         res.json({ success: true, token });
     } catch (error) {
-        next(error)
+        throw error;
     }
 };
 
@@ -56,6 +56,6 @@ exports.login = async (req, res, next) => {
             res.json({ success: false, errors: "Wrong Email Address" });
         }
     } catch (error) {
-        next(error)
+        throw error;
      }
 };
