@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
 // import Swiper core and required modules
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -6,9 +6,18 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 
 import { RiShoppingCart2Line } from 'react-icons/ri'
-import LATEST from '../assets/latest';
+
+import BASE_URL from '../../config';
+
 
 const RelatedProducts = () => {
+
+  const [popular_products, setPopular_products] = useState([])
+
+  useEffect(() => {
+    fetch(`${BASE_URL}/products/popularproducts`).then((response) => response.json()).then((data) => setPopular_products(data));
+  }, []);
+
   return (
     <div>
       <h4 className='border-l-4 pl-2 border-secondary bold-20'>Related Products</h4>
@@ -31,7 +40,7 @@ const RelatedProducts = () => {
         }}
         className='h-[188px] mt-5 '
         >
-          {LATEST.map((item, i) => (
+          {popular_products.map((item, i) => (
             <SwiperSlide key={i}>
               <Link onClick={window.scrollTo(0, 0)} to={`/product/${item.id}`} className='flexCenter gap-x-5 bg-white backdrop-blur-md p-4 rounded-xl' >
                 <img src={item.image} height={77} width={77} className='rounded-lg drop-shadow-xl' />

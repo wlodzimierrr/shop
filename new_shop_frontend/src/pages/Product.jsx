@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { useParams } from 'react-router-dom'
 
 // Components
@@ -6,11 +6,12 @@ import ProductDisplay from '../components/ProductDisplay'
 import ProductHD from '../components/ProductHD'
 import ProductDesciption from '../components/ProductDesciption'
 import PopularProducts from '../components/PopularProducts'
-import all_products from '../assets/all_products'
+import { ShopContext } from '../context/ShopContext'
 
 const Product = () => {
 
   const { productId } = useParams();
+  const { all_products } = useContext(ShopContext)
   
   const product = all_products.find((e) => e.id === Number(productId));
   if(!product) {

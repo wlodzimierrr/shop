@@ -4,7 +4,6 @@ import BASE_URL from '../../config'
 
 // Components
 import Item from './Item'
-import POPULAR from '../assets/popular'
 
 const NewArrivals = () => {
 

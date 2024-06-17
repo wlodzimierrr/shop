@@ -7,7 +7,7 @@ import Item from './Item'
 
 const PopularProducts = () => {
 
-  const [ popular_products, setPopular_products ] = useState([])
+  const [popular_products, setPopular_products] = useState([])
 
   useEffect(() => {
     fetch(`${BASE_URL}/products/popularproducts`).then((response) => response.json()).then((data) => setPopular_products(data));

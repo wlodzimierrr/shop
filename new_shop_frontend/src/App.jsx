@@ -19,12 +19,8 @@ export default function App() {
       <Header/>
       <Routes>
         <Route path="/" element={<Home />}/>
-        <Route path="/category1" element={<Category category={""} banner={""}/>}/>
-        <Route path="/category2" element={<Category category={""} banner={""}/>}/>
-        <Route path="/category3" element={<Category category={""} banner={""}/>}/>
-        <Route path="/product" element={<Product />}>
-          <Route path=":productId" element={<Product />}/>
-        </Route>
+        <Route path="/category/:category" element={<Category />}/>
+        <Route path="/product/:productId" element={<Product />}/>
         <Route path="/cart-page" element={<Cart />}/>
         <Route path="/login" element={<Login />}/>
       </Routes>
