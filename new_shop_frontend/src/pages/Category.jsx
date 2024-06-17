@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom'
 
 // Components
 import Item from '../components/Item'
-import all_products from '../assets/all_products'
 import { ShopContext } from '../context/ShopContext'
 
 const Category = ({ banner, category }) => {

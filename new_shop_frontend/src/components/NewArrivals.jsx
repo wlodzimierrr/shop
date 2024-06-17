@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import BASE_URL from '../../config'
+
 // Components
 import Item from './Item'
 import POPULAR from '../assets/popular'
@@ -9,7 +11,7 @@ const NewArrivals = () => {
   const [new_collection, setNew_Collection] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:4000/newcollection').then((response) => response.json()).then((data) => setNew_Collection(data));
+    fetch( `${BASE_URL}/products/newcollection`).then((response) => response.json()).then((data) => setNew_Collection(data));
   }, []);
 
   return (

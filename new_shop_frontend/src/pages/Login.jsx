@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 
+import BASE_URL from '../../config';
+
 const Login = () => {
 
   const [state, setState] = useState("Login");
@@ -12,7 +14,7 @@ const Login = () => {
   const login = async () => {
     console.log("Login function executed", formData)
     let responseData;
-    await fetch('http://localhost:4000/login', {
+    await fetch(`${BASE_URL}/auth/login`, {
       method:'POST',
       headers: {
         Accept: 'application/formData',
@@ -31,7 +33,7 @@ const Login = () => {
   const signup = async () => {
     console.log("Sign up function executed", formData)
     let responseData;
-    await fetch('http://localhost:4000/signup', {
+    await fetch(`${BASE_URL}/auth/signup`, {
       method:'POST',
       headers: {
         Accept: 'application/formData',

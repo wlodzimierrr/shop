@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import BASE_URL from '../../config' 
 
 import { TbTrash } from 'react-icons/tb'
 
@@ -7,7 +8,7 @@ const ListProduct = () => {
   const [allProducts, setAllProducts] = useState([])
   
   const fetchInfo = async () => {
-    await fetch('http://localhost:4000/allproducts').then((res) => res.json()).then((data) => {setAllProducts(data)});
+    await fetch(`${BASE_URL}/products/allproducts`).then((res) => res.json()).then((data) => {setAllProducts(data)});
   }
 
   useEffect(() => {
@@ -15,7 +16,7 @@ const ListProduct = () => {
   }, []);
 
   const remove_product = async(id) => {
-    await fetch('http://localhost:4000/deleteproduct', {
+    await fetch(`${BASE_URL}/deleteproduct`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
