@@ -6,11 +6,10 @@ import { Link, useParams  } from 'react-router-dom'
 import Item from '../components/Item'
 import { ShopContext } from '../context/ShopContext'
 
-const Category = ({ banner }) => {
+const Category = () => {
   
   const { all_products } = useContext(ShopContext)
   const { category } = useParams();
-  console.log(category)
 
   return (
     <section className='max-padd-container bg-brimary'>
@@ -24,8 +23,7 @@ const Category = ({ banner }) => {
         </div>
         {/* {container} */}
         <div className='grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 gap-y-28 mt-32'>
-          {all_products.map((item) => {
-            
+          {all_products.map((item) => {     
             if (category === item.category)
             return <Item key={item.id} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
           })}

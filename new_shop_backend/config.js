@@ -10,5 +10,5 @@ mongoose.connect(process.env.DATABASE_URL)
 module.exports = {
     PORT: process.env.PORT || 3000,
     DB: process.env.DATABASE_URL,
-    JWT_SECRET: process.env.JWT_SECRET_SECRET
+    JWT_SECRET: process.env.JWT_SECRET
     }

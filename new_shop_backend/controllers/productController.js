@@ -1,7 +1,6 @@
 const ProductModel = require('../models/Product');
-const ProductModelInstance  = new ProductModel();
 
-exports.addProduct = async (req, res) => {
+exports.addProduct = async (req, res, next) => {
     try{
         let products = await ProductModel.find({});
         let id;
@@ -13,7 +12,7 @@ exports.addProduct = async (req, res) => {
             id = 1;
         }
     
-        const product = new ProductModelInstance({
+        const product = new ProductModel({
             id,
             name: req.body.name,
             image: req.body.image,
@@ -29,7 +28,7 @@ exports.addProduct = async (req, res) => {
     }
 };
 
-exports.deleteProduct = async (req, res) => {
+exports.deleteProduct = async (req, res, next) => {
     try{
         await Product.findOneAndDelete({ id: req.body.id });
         res.json({ success: true, name: req.body.name });
@@ -38,7 +37,7 @@ exports.deleteProduct = async (req, res) => {
     }
 };
 
-exports.getAllProducts = async (req, res) => {
+exports.getAllProducts = async (req, res, next) => {
     try{
         let products = await ProductModel.find({});
         res.send(products);
@@ -47,7 +46,7 @@ exports.getAllProducts = async (req, res) => {
     }
 };
 
-exports.getNewCollection = async (req, res) => {
+exports.getNewCollection = async (req, res, next) => {
     try{
         let products = await ProductModel.find({});
         let newCollection = products.slice(-8);
@@ -57,7 +56,7 @@ exports.getNewCollection = async (req, res) => {
     }
 };
 
-exports.getPopularProducts = async (req, res) => {
+exports.getPopularProducts = async (req, res, next) => {
     try{
         let products = await ProductModel.find({ category: "category1" });
         let popularProducts = products.slice(0, 4);
