@@ -3,15 +3,21 @@ const cors = require('cors');
 
 const app = express();
 
-// Routes
-const authRoutes = require('./routes/authRoutes');
-const productRoutes = require('./routes/productRoutes');
-const cartRoutes = require('./routes/cartRoutes');
-
 app.use(express.json());
 app.use(cors());
 
 const { PORT } = require('./config');
+
+// Routes
+const authRoutes = require('./routes/authRoutes');
+const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const ordersRoutes = require('./routes/ordersRoutes')
+const userRoutes = require('./routes/userRoutes')
+
+// Custom error handler
+const errorHandler = require('./middleware/errorHandlingMiddleware')
+app.use(errorHandler);
 
 // Image storage engine
 const upload = require('./utility/multer');
@@ -23,11 +29,12 @@ app.post('/api/upload', upload.single('product'), (req, res) => {
     });
 });
 
-
 // Route handlers
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
 app.use('/api/cart', cartRoutes);
+app.use('/api/orders', ordersRoutes);
+app.use('/api/user', userRoutes);
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
