@@ -42,7 +42,7 @@ const Header = () => {
                 {/* logo */}
                 <Link to={'/'} className='flex items-center gap-x-2'>
                     <img src={logo} alt='logoImg' height={50} width={50} />
-                    <span className='bold-24 hiidden xs:flex'>Peak Performance Bikes</span>
+                    <span className='bold-24 hiidden xs:flex sm: hidden'>Peak Performance</span>
                 </Link>
                 {/* {Navbar & Buttons} */}
                 <div className='flexCenter gap-x-4'>  

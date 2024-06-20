@@ -15,7 +15,7 @@ const Footer = () => {
         {/* {Logo} */}
         <Link to={'/'} className='flex items-center gap-x-2'>
           <img src={logo} alt='logoImg' height={50} width={50} className=''/>
-          <span className='bold-24 hidden xs:flex text-white'>Peak Performance Bikes</span>
+          <span className='bold-24 hidden xs:flex text-white'>Peak Performance</span>
         </Link>
         {/* {Nav} */}
         <div className='py-4'>
