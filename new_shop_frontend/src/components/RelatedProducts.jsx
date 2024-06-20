@@ -1,22 +1,34 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom';
+
 // import Swiper core and required modules
 import { Swiper, SwiperSlide } from 'swiper/react';
+
 // import Swiper styles
 import 'swiper/css';
 
 import { RiShoppingCart2Line } from 'react-icons/ri'
-
-import BASE_URL from '../../config';
-
 
 const RelatedProducts = () => {
 
   const [popular_products, setPopular_products] = useState([])
 
   useEffect(() => {
-    fetch(`${BASE_URL}/products/popularproducts`).then((response) => response.json()).then((data) => setPopular_products(data));
+    fetch(`/api/products/popularProducts`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPopular_products(data.popularProducts);
+      })
+      .catch((error) => {
+        console.error('Error fetching popular products:', error);
+      });
   }, []);
+  
 
   return (
     <div>

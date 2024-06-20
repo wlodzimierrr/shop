@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import BASE_URL from '../../config'
-
 // Components
 import Item from './Item'
 
@@ -10,7 +8,21 @@ const NewArrivals = () => {
   const [new_collection, setNew_Collection] = useState([])
 
   useEffect(() => {
-    fetch( `${BASE_URL}/products/newcollection`).then((response) => response.json()).then((data) => setNew_Collection(data));
+    const fetchNewCollection = async () => {
+      try {
+        const response = await fetch(`/api/products/newcollection`);
+        if (!response.ok) {
+          throw new Error('Failed to fetch new collection data');
+        }
+        const data = await response.json();
+        setNew_Collection(data.newCollection);
+      } catch (error) {
+        console.error('Error fetching new collection data:', error);
+        alert('Failed to fetch new collection data. Please try again later.');
+      }
+    };
+  
+    fetchNewCollection();
   }, []);
 
   return (

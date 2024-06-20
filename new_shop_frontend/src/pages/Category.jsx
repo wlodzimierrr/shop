@@ -4,6 +4,8 @@ import { Link, useParams  } from 'react-router-dom'
 
 // Components
 import Item from '../components/Item'
+
+// Contexts
 import { ShopContext } from '../context/ShopContext'
 
 const Category = () => {

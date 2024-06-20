@@ -1,8 +1,11 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+// Icons
 import { FaArrowRightLong } from 'react-icons/fa6'
 
 const Offer = () => {
+
   return (
     <section className='max-padd-container bg-amber-100 bg-center bg-cover w-full '>
       <div className='px-4 py-16 md:py-24 lg:py-44'>

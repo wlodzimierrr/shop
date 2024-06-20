@@ -1,6 +1,7 @@
 import React from 'react'
 
 const ProductDesciption = () => {
+  
   return (
     <div className='max-padd-container mt-20'>
       <div className='flex gap-3 mb-4'>

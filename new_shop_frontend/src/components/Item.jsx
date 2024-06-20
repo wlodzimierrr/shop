@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+// Icons
 import { RiShoppingBag2Line } from 'react-icons/ri'
 
 const Item = ({id, name, image, old_price, new_price}) => {

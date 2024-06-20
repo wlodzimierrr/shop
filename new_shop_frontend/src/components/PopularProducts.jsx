@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 
-import BASE_URL from '../../config';
-
 // Components
 import Item from './Item'
 
@@ -10,9 +8,21 @@ const PopularProducts = () => {
   const [popular_products, setPopular_products] = useState([])
 
   useEffect(() => {
-    fetch(`${BASE_URL}/products/popularproducts`).then((response) => response.json()).then((data) => setPopular_products(data));
+    fetch(`/api/products/popularProducts`)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        setPopular_products(data.popularProducts);
+      })
+      .catch((error) => {
+        console.error('Error fetching popular products:', error);
+      });
   }, []);
-
+  
   return (
     <section className='max-padd-container bg-primary p-12 xl:py-28'>
       {/* {title} */}

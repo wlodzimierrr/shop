@@ -1,6 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+// Components
 import Navbar from './Navbar'
+
+// Icons and SVGs
 import SocialIcons from './SocialIcons'
 import logo from '../assets/logo.svg'
 

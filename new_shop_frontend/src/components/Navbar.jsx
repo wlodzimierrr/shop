@@ -2,8 +2,14 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 const Navbar = ({containerStyles}) => {
+  
   return (
     <nav className={`${containerStyles}`}>
+      {localStorage.getItem('auth-token') ?
+        <NavLink to={'/account'} className={({isActive})=> isActive ? "active-link" : ""}>Account</NavLink>
+      : 
+      <></>
+      }
       <NavLink to={'/'} className={({isActive})=> isActive ? "active-link" : ""}>Home</NavLink>
       <NavLink to={'/category/category1'} className={({isActive})=> isActive ? "active-link" : ""}>category1</NavLink>
       <NavLink to={'/category/category2'} className={({isActive})=> isActive ? "active-link" : ""}>category2</NavLink>

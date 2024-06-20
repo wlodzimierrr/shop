@@ -2,6 +2,7 @@ import React from 'react'
 import { TbTruckReturn } from 'react-icons/tb'
 
 const About = () => {
+  
   return (
     <section className='max-padd-container py-12 xl:py-32'>
       {/* {container} */}

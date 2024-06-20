@@ -1,13 +1,14 @@
 import React, { useContext } from 'react'
 
+// Icons
 import { FaHeart, FaStar } from 'react-icons/fa6'
 
+// Contexts
 import { ShopContext } from '../context/ShopContext'
 
 const ProductDisplay = (props) => {
 
   const { product } = props;
-
   const { addToCart } = useContext(ShopContext)
 
   return (
