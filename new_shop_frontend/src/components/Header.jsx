@@ -3,22 +3,21 @@ import { Link, NavLink } from 'react-router-dom';
 
 // Context
 import { ShopContext } from '../context/ShopContext'
+import { AuthContext } from '../context/AuthContext';
 
 // Images, SVGs, Icons
 import user from '../assets/user.svg'
-import logout from '../assets/logout.svg'
+import logoutImg from '../assets/logout.svg'
 import logo from '../assets/logo.svg'
 import Navbar from './Navbar';
 import { MdClose, MdMenu } from 'react-icons/md'
 import { RiShoppingCart2Line } from 'react-icons/ri'
 
 const Header = () => {
-    
     const [menuOpened, setMenuOpened] = useState(false);
     const toggleMenu = () => setMenuOpened(!menuOpened);
     const { getTotalCartItems } = useContext(ShopContext)
-
-    
+    const { logout } = useContext(AuthContext);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -64,12 +63,12 @@ const Header = () => {
                         )}
                     </div>
                     <div className='flexBetween sm:gap-x-6'>
-                        <NavLink to={'/cart-page'} className={'flex'}>
+                        <NavLink to={'/cartPage'} className={'flex'}>
                             <RiShoppingCart2Line className='p-2 h-10 w-10 hover:text-secondary'/>
                         <span className='relative flexCenter w-5 h-5 rounded-full bg-secondary text-primary medium-14 -top-2 right-3'>{getTotalCartItems()}</span>
                         </NavLink>
-                        {localStorage.getItem('auth-token') ? <NavLink onClick={() => {localStorage.removeItem('auth-token'); window.location.replace('/')}} to={'/login'} className={'btn-secondary flexCenter gap-x-2 medium-16 rounded-xl'} >
-                            <img src={logout} alt="" height={19} width={19}/>
+                        {localStorage.getItem('auth-token') ? <NavLink onClick={() => {logout()}} className={'btn-secondary flexCenter gap-x-2 medium-16 rounded-xl'} >
+                            <img src={logoutImg} alt="" height={19} width={19}/>
                             Logout
                         </NavLink> :
                         <NavLink to={'/login'} className={'btn-secondary flexCenter gap-x-2 medium-16 rounded-xl'} >
