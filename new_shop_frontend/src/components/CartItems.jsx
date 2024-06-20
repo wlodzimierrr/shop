@@ -1,14 +1,19 @@
 import React, { useContext } from 'react'
+import { Navigate, useNavigate } from 'react-router-dom';
 
 // Components
 import { ShopContext } from '../context/ShopContext'
 
-
 // Icons
 import { TbTrash } from 'react-icons/tb'
 
-
 const CartItems = () => {
+
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate('/checkout');
+    };
 
     const { all_products, cartItems, removeFromCart, getTotalCartAmount } = useContext(ShopContext)
 
@@ -65,7 +70,7 @@ const CartItems = () => {
                             <h4 className='bold-18'>£{getTotalCartAmount()}</h4>
                         </div>
                     </div>
-                    <button className='btn-dark w-44 rounded-xl'>Checkout</button>
+                    <button onClick={handleClick} className='btn-dark w-44 rounded-xl'>Checkout</button>
                 </div>
                 <div className='flex flex-col gap-10'>
                     <h4 className='bold-20 capitalize'>Enter your coupon code:</h4>
