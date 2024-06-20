@@ -36,8 +36,5 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', ordersRoutes);
 app.use('/api/user', userRoutes);
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
