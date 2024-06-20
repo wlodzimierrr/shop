@@ -6,7 +6,7 @@ import Navbar from './Navbar'
 
 // Icons and SVGs
 import SocialIcons from './SocialIcons'
-import logo from '../assets/logo.svg'
+import logo from '../assets/footerlog.svg'
 
 const Footer = () => {
   return (
@@ -14,8 +14,8 @@ const Footer = () => {
       <div className='flexCenter flex-col gap-y-4'>
         {/* {Logo} */}
         <Link to={'/'} className='flex items-center gap-x-2'>
-          <img src={logo} alt='logoImg' height={31} width={31} />
-          <span className='bold-24 hidden xs:flex text-white'>Strong Brand</span>
+          <img src={logo} alt='logoImg' height={50} width={50} className=''/>
+          <span className='bold-24 hidden xs:flex text-white'>Peak Performance Bikes</span>
         </Link>
         {/* {Nav} */}
         <div className='py-4'>

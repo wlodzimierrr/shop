@@ -14,8 +14,8 @@ const Item = ({id, name, image, old_price, new_price}) => {
         <h4 className='line-clamp-2 medium-16'>{name}</h4>
         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis?</p>
         <div className='flex gap-x-4 medium-16'>
-          <span>${new_price}.00</span>
-          <span className='line-through text-secondary'>${old_price}.00</span>
+          <span>£{new_price}.00</span>
+          <span className='line-through text-secondary'>£{old_price}.00</span>
         </div>
         <RiShoppingBag2Line />
       </div>

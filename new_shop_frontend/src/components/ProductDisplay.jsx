@@ -37,8 +37,8 @@ const ProductDisplay = (props) => {
           <p>(223)</p>
         </div>
         <div className='flex items-baseline gap-x-6 bold-28 sm:bold-32 mt-4'>
-          <div>${product.new_price}.00</div>
-          <div className='bold-20 sm:bold-28 line-through text-secondary'>${product.old_price}.00</div>
+          <div>£{product.new_price}.00</div>
+          <div className='bold-20 sm:bold-28 line-through text-secondary'>£{product.old_price}.00</div>
         </div>
         <div>
           {/* {product colors, icons buttons} */}
@@ -68,7 +68,7 @@ const ProductDisplay = (props) => {
             className='btn-dark rounded-md'>Add to cart</button>
             <button className='btn-secondary rounded-md !px-4'><FaHeart /></button>
           </div>
-          <p><span className='medium-16 text-tertiary'>Category:</span> Category1 | Category2 | Category3</p>
+          <p><span className='medium-16 text-tertiary'>Category:</span> Mountain Bikes | Electric Bikes | Road Bikes</p>
           <p><span className='medium-16 text-tertiary'>Tags:</span>Cool | Cool | Cool</p>
         </div>
       </div>

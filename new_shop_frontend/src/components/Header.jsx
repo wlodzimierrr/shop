@@ -8,7 +8,7 @@ import { AuthContext } from '../context/AuthContext';
 // Images, SVGs, Icons
 import user from '../assets/user.svg'
 import logoutImg from '../assets/logout.svg'
-import logo from '../assets/logo.svg'
+import logo from '../assets/bicycle-trail.svg'
 import Navbar from './Navbar';
 import { MdClose, MdMenu } from 'react-icons/md'
 import { RiShoppingCart2Line } from 'react-icons/ri'
@@ -41,8 +41,8 @@ const Header = () => {
             <div className='flexBetween py-3'>
                 {/* logo */}
                 <Link to={'/'} className='flex items-center gap-x-2'>
-                    <img src={logo} alt='logoImg' height={31} width={31} />
-                    <span className='bold-24 hiidden xs:flex'>Strong Brand</span>
+                    <img src={logo} alt='logoImg' height={50} width={50} />
+                    <span className='bold-24 hiidden xs:flex'>Peak Performance Bikes</span>
                 </Link>
                 {/* {Navbar & Buttons} */}
                 <div className='flexCenter gap-x-4'>  

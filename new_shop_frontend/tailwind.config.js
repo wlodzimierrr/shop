@@ -26,9 +26,9 @@ export default {
         "4xl": "2200px",
       },
       backgroundImage: {
-        hero: "url(/src/assets/bg.png)",
-        banneroffer: "url(/src/assets/banneroffer.png)",
-      },
+        hero: "linear-gradient(to right, rgba(255, 224, 130, 1), rgba(255, 236, 179, 0.5)), url(/src/assets/background.jpg)",
+        banneroffer: "linear-gradient(to bottom, rgba(255, 224, 130, 0.9), rgba(28, 25, 23, 0.7)), url(/src/assets/banner.png)",
+      },      
     },
   },
   plugins: [],

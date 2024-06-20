@@ -26,6 +26,7 @@ const Category = () => {
         {/* {container} */}
         <div className='grid grid-cols-1 xs:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 gap-y-28 mt-32'>
           {all_products.map((item) => {     
+            item.category = item.category.replace(/\s+/g, '');
             if (category === item.category)
             return <Item key={item.id} id={item.id} name={item.name} image={item.image} new_price={item.new_price} old_price={item.old_price}/>
           })}

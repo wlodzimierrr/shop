@@ -61,8 +61,8 @@ const RelatedProducts = () => {
                     <p className='line-clamp-1' >Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
                     <div className='flexBetween'>
                         <div className='flexBetween gap-x-2 medium-16'>
-                          <span>${item.new_price}.00</span>
-                          <span className='line-through text-secondary'>${item.old_price}.00</span>
+                          <span>£{item.new_price}.00</span>
+                          <span className='line-through text-secondary'>£{item.old_price}.00</span>
                         </div>
                         <RiShoppingCart2Line className='text-xl hover:text-secondary' />
                     </div>

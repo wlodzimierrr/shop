@@ -46,6 +46,7 @@ exports.deleteProduct = async (req, res, next) => {
 exports.getAllProducts = async (req, res, next) => {
     try {
         const products = await ProductModel.find({});
+        
         res.json({ success: true, products });
     } catch (error) {
         console.error('Error fetching products:', error);
@@ -66,7 +67,7 @@ exports.getNewCollection = async (req, res, next) => {
 
 exports.getPopularProducts = async (req, res, next) => {
     try {
-        const products = await ProductModel.find({ category: "category1" });
+        const products = await ProductModel.find({ category: "Road Bikes" });
         const popularProducts = products.slice(0, 4);
         res.json({ success: true, popularProducts });
     } catch (error) {

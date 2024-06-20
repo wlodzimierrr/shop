@@ -6,6 +6,8 @@ import ProductDisplay from '../components/ProductDisplay'
 import ProductHD from '../components/ProductHD'
 import ProductDesciption from '../components/ProductDesciption'
 import PopularProducts from '../components/PopularProducts'
+
+// Contexts
 import { ShopContext } from '../context/ShopContext'
 
 const Product = () => {
@@ -17,6 +19,7 @@ const Product = () => {
   if(!product) {
     return <div>Product not found!</div>
   }
+  
   return (
     <section>
       <div>

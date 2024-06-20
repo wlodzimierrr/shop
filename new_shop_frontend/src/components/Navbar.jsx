@@ -11,9 +11,9 @@ const Navbar = ({containerStyles}) => {
       <></>
       }
       <NavLink to={'/'} className={({isActive})=> isActive ? "active-link" : ""}>Home</NavLink>
-      <NavLink to={'/category/category1'} className={({isActive})=> isActive ? "active-link" : ""}>category1</NavLink>
-      <NavLink to={'/category/category2'} className={({isActive})=> isActive ? "active-link" : ""}>category2</NavLink>
-      <NavLink to={'/category/category3'} className={({isActive})=> isActive ? "active-link" : ""}>category3</NavLink>
+      <NavLink to={'/category/MountainBikes'} className={({isActive})=> isActive ? "active-link" : ""}>Mountain Bikes</NavLink>
+      <NavLink to={'/category/ElectricBikes'} className={({isActive})=> isActive ? "active-link" : ""}>Electric Bikes</NavLink>
+      <NavLink to={'/category/RoadBikes'} className={({isActive})=> isActive ? "active-link" : ""}>Road Bikes</NavLink>
     </nav>
   )
 }

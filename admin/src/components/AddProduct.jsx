@@ -1,7 +1,5 @@
 import React, { useState } from 'react'
 
-import BASE_URL from '../../config'
-
 // Components
 import upload_area from '../assets/upload_area.svg'
 
@@ -14,7 +12,7 @@ const AddProduct = () => {
   const [productDetails, setProductDetails] = useState({
     name: "",
     image: "",
-    category: "category1",
+    category: "Mountain Bikes",
     new_price: "",
     old_price: "",
   })
@@ -32,7 +30,7 @@ const AddProduct = () => {
       let formData = new FormData();
       formData.append('product', image);
 
-      const uploadResponse = await fetch(`${BASE_URL}/upload`, {
+      const uploadResponse = await fetch(`/api/upload`, {
         method: 'POST',
         body: formData,
       });
@@ -41,7 +39,7 @@ const AddProduct = () => {
       if (uploadData.success) {
         const updatedProduct = { ...productDetails, image: uploadData.image_url };
 
-        const addProductResponse = await fetch(`${BASE_URL}/products/addproduct`, {
+        const addProductResponse = await fetch(`/api/products/addProduct`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -55,7 +53,7 @@ const AddProduct = () => {
           setProductDetails({
             name: '',
             image: '',
-            category: 'category1',
+            category: 'Mountain Bikes',
             new_price: '',
             old_price: '',
           });
@@ -77,7 +75,7 @@ const AddProduct = () => {
   return (
     <div className='p-8 box-border bg-white w-full rounded-sm mt-5 lg:ml-5'>
       <div className='mb-3'>
-        <h4 className='bold-18 pb-2'>Product title:</h4>
+        <h4 className='bold-18 pb-2'>Product name:</h4>
         <input value={productDetails.name} onChange={changeHandler} type='text' name='name' placeholder='Type here...' className='bg-primary outline-none max-w-80 w-full py-3 px-4 rounded-md'/>
       </div>
       <div className='mb-3'>
@@ -91,9 +89,9 @@ const AddProduct = () => {
       <div className='mb-3 flex items-center gap-x-4'>
         <h4>Product Category:</h4>
         <select value={productDetails.category} onChange={changeHandler} name="category" id="" className='bg-primary ring-1 ring-slate-900/20 medium-16 rounded-sm outline-none'>
-          <option value="category1">Category1</option>
-          <option value="category2">Category2</option>
-          <option value="category3">Category3</option>
+          <option value="Mountain Bikes">Mountain Bikes</option>
+          <option value="Electric Bikes">Electric Bikes</option>
+          <option value="Road Bikes">Road Bikes</option>
         </select>
       </div>
       <div>
