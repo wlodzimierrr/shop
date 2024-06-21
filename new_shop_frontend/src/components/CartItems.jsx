@@ -37,7 +37,7 @@ const CartItems = () => {
                             return (
                             <tr key={e.id} className='border-b border-slate-900/20 text-gray-30 p-6 medium-14 text-center'>
                                 <td className='flex items-end justify-center'>
-                                    <img src={e.image} alt="prdctImg" height={55} width={55} className='rounded-lg ring-1 ring-slate-900/5 m-3 p-1'/>
+                                    <img src={e.image} alt="prdctImg" height={55} width={55} className='rounded-lg ring-1 ring-slate-900/5 m-3 p-1' crossOrigin="anonymous"/>
                                 </td>
                                 <td><div className='line-clamp-3'>{e.name}</div></td>
                                 <td>£{e.new_price}</td>

@@ -41,7 +41,7 @@ const Header = () => {
             <div className='flexBetween py-3'>
                 {/* logo */}
                 <Link to={'/'} className='flex items-center gap-x-2'>
-                    <img src={logo} alt='logoImg' height={50} width={50} />
+                    <img src={logo} alt='logoImg' height={50} width={50} crossOrigin="anonymous"/>
                     <span className='bold-24 hiidden xs:flex sm: hidden'>Peak Performance</span>
                 </Link>
                 {/* {Navbar & Buttons} */}
@@ -68,11 +68,11 @@ const Header = () => {
                         <span className='relative flexCenter w-5 h-5 rounded-full bg-secondary text-primary medium-14 -top-2 right-3'>{getTotalCartItems()}</span>
                         </NavLink>
                         {localStorage.getItem('auth-token') ? <NavLink onClick={() => {logout()}} className={'btn-secondary flexCenter gap-x-2 medium-16 rounded-xl'} >
-                            <img src={logoutImg} alt="" height={19} width={19}/>
+                            <img src={logoutImg} alt="" height={19} width={19} crossOrigin="anonymous"/>
                             Logout
                         </NavLink> :
                         <NavLink to={'/login'} className={'btn-secondary flexCenter gap-x-2 medium-16 rounded-xl'} >
-                            <img src={user} alt="" height={19} width={19}/>
+                            <img src={user} alt="" height={19} width={19} crossOrigin="anonymous"/>
                             Login
                         </NavLink> }
                     </div>

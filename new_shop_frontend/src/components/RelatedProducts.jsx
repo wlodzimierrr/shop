@@ -55,7 +55,7 @@ const RelatedProducts = () => {
           {popular_products.map((item, i) => (
             <SwiperSlide key={i}>
               <Link onClick={window.scrollTo(0, 0)} to={`/product/${item.id}`} className='flexCenter gap-x-5 bg-white backdrop-blur-md p-4 rounded-xl' >
-                <img src={item.image} height={77} width={77} className='rounded-lg drop-shadow-xl' />
+                <img src={item.image} height={77} width={77} className='rounded-lg drop-shadow-xl' crossOrigin="anonymous"/>
                 <div>
                     <h4 className='line-clamp-1 medium-16' >{item.name}</h4>
                     <p className='line-clamp-1' >Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>

@@ -37,7 +37,7 @@ const OrdersTable = () => {
                       <tr key={item.id} className='border-b border-slate-900/20 text-gray-30 p-6 medium-14 text-center'>
                         <td><div className='line-clamp-3'>{order.orderId}</div></td>
                         <td className='flex items-end justify-center'>
-                          <img src={product.image} alt="prdctImg" height={55} width={55} className='rounded-lg ring-1 ring-slate-900/5 m-3 p-1' />
+                          <img src={product.image} alt="prdctImg" height={55} width={55} className='rounded-lg ring-1 ring-slate-900/5 m-3 p-1' crossOrigin="anonymous"/>
                         </td>
                         <td><div className='line-clamp-3'>{product.name}</div></td>
                         <td>£{product.new_price}</td>

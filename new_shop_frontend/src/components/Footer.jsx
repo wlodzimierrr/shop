@@ -14,7 +14,7 @@ const Footer = () => {
       <div className='flexCenter flex-col gap-y-4'>
         {/* {Logo} */}
         <Link to={'/'} className='flex items-center gap-x-2'>
-          <img src={logo} alt='logoImg' height={50} width={50} className=''/>
+          <img src={logo} alt='logoImg' height={50} width={50} className='' crossOrigin="anonymous"/>
           <span className='bold-24 hidden xs:flex text-white'>Peak Performance</span>
         </Link>
         {/* {Nav} */}

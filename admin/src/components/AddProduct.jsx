@@ -96,7 +96,7 @@ const AddProduct = () => {
       </div>
       <div>
         <label htmlFor='file-input'>
-          <img src={image?URL.createObjectURL(image):upload_area} alt="" className='w-20 rounded-sm inline-block'/>
+          <img src={image?URL.createObjectURL(image):upload_area} alt="" className='w-20 rounded-sm inline-block' crossOrigin="anonymous"/>
         </label>
         <input onChange={imageHandler} type="file" name='image' id='file-input' hidden className='bg-primary max-w-80 w-full py-3 px-4'/>
       </div>

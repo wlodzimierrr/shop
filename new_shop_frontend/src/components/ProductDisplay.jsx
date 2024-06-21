@@ -16,10 +16,10 @@ const ProductDisplay = (props) => {
       {/* {left side} */}
       <div className='flex gap-x-2 xl:flex-1 py-5'>
         <div className='flex flex-col gap-[7px] flex-wrap'>
-          <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' />
-          <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' />
-          <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' />
-          <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' />
+          <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' crossOrigin="anonymous"/>
+          <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' crossOrigin="anonymous"/>
+          <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' crossOrigin="anonymous"/>
+          <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' crossOrigin="anonymous"/>
         </div>
         <div className='max-h-[355px] w-auto flex'>
           <img src={product.image} alt="bigImg" className='rounded-xl bg-gray-10'/>
