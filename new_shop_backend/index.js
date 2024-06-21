@@ -61,6 +61,7 @@ const productRoutes = require('./routes/productRoutes');
 const cartRoutes = require('./routes/cartRoutes');
 const ordersRoutes = require('./routes/ordersRoutes');
 const userRoutes = require('./routes/userRoutes');
+
 // Route handlers
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
