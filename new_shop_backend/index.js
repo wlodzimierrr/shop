@@ -3,56 +3,51 @@ const cors = require('cors');
 const helmet = require('helmet');
 const compression = require('compression');
 const rateLimit = require('express-rate-limit');
-const { PORT } = require('./config');
+const { PORT, CORS_ORIGIN, RATE_LIMIT_WINDOW_MS, RATE_LIMIT_MAX } = require('./config');
+const errorHandler = require('./middleware/errorHandlingMiddleware');
+const upload = require('./utility/multer');
 
-// Initialize express app
 const app = express();
 
-// Middleware setup
+// Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(cors());
-app.use(helmet());
+app.use(cors({
+  origin: CORS_ORIGIN,
+  optionsSuccessStatus: 200
+}));
+app.use(helmet({
+  crossOriginEmbedderPolicy: false,
+}));
 app.use(compression());
-
-// Content Security Policy
-app.use(
-  helmet.contentSecurityPolicy({
-    directives: {
-      defaultSrc: ["'self'"],
-      scriptSrc: ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
-      styleSrc: ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net"],
-      imgSrc: ["'self'", "data:", "cdn.jsdelivr.net"],
-      fontSrc: ["'self'", "cdn.jsdelivr.net"],
-      connectSrc: ["'self'"],
-      frameSrc: ["'self'"],
-      objectSrc: ["'none'"],
-      upgradeInsecureRequests: [],
-    },
-  })
-);
 
 // Rate limiting
 const limiter = rateLimit({
-  windowMs: 1 * 60 * 1000, // 1 minute
-  max: 20, // limit each IP to 20 requests per windowMs
+  windowMs: RATE_LIMIT_WINDOW_MS,
+  max: RATE_LIMIT_MAX,
   message: 'Too many requests from this IP, please try again after 1 minute'
 });
 app.use(limiter);
 
-// Routes
-const authRoutes = require('./routes/authRoutes');
-const productRoutes = require('./routes/productRoutes');
-const cartRoutes = require('./routes/cartRoutes');
-const ordersRoutes = require('./routes/ordersRoutes');
-const userRoutes = require('./routes/userRoutes');
+// Content Security Policy
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
+    styleSrc: ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net"],
+    imgSrc: ["'self'", "data:", "http://localhost:4000"],
+    fontSrc: ["'self'", "cdn.jsdelivr.net"],
+    connectSrc: ["'self'"],
+    frameSrc: ["'self'"],
+    objectSrc: ["'none'"],
+    upgradeInsecureRequests: [],
+  },
+}));
 
-// Custom error handler
-const errorHandler = require('./middleware/errorHandlingMiddleware');
-app.use(errorHandler);
-
-// Image storage engine
-const upload = require('./utility/multer');
+// Static files
 app.use('/images', express.static('uploads/images'));
+
+// Image upload route
 app.post('/api/upload', upload.single('product'), (req, res) => {
   res.json({
     success: 1,
@@ -60,6 +55,12 @@ app.post('/api/upload', upload.single('product'), (req, res) => {
   });
 });
 
+// Routes
+const authRoutes = require('./routes/authRoutes');
+const productRoutes = require('./routes/productRoutes');
+const cartRoutes = require('./routes/cartRoutes');
+const ordersRoutes = require('./routes/ordersRoutes');
+const userRoutes = require('./routes/userRoutes');
 // Route handlers
 app.use('/api/auth', authRoutes);
 app.use('/api/products', productRoutes);
@@ -67,5 +68,10 @@ app.use('/api/cart', cartRoutes);
 app.use('/api/orders', ordersRoutes);
 app.use('/api/user', userRoutes);
 
-// Start the server
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+// Error handler
+app.use(errorHandler);
+
+// Start server
+app.listen(PORT, () => {
+  console.log(`Server running on port ${PORT}`);
+});
