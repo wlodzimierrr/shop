@@ -12,7 +12,7 @@ module.exports = {
     JWT_SECRET: process.env.JWT_SECRET,
     STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
     STRIPE_PUBLISHABLE_KEY: process.env.STRIPE_PUBLISHABLE_KEY,
-    CORS_ORIGIN: ['http://localhost:4242', 'http://localhost:5252'],
+    CORS_ORIGIN: ['http://peakperformance.wlodzimierrr.co.uk', 'https://peakperformance.wlodzimierrr.co.uk', 'http://localhost:5252'],
     RATE_LIMIT_WINDOW_MS: 1 * 60 * 1000, // 1 minute
     RATE_LIMIT_MAX: 100,
     }

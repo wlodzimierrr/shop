@@ -9,6 +9,8 @@ const upload = require('./utility/multer');
 
 const app = express();
 
+app.set('trust proxy', ['loopback', 'linklocal', 'uniquelocal']);
+
 // Middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -27,7 +29,7 @@ const limiter = rateLimit({
   max: RATE_LIMIT_MAX,
   message: 'Too many requests from this IP, please try again after 1 minute'
 });
-app.use(limiter);
+app.use('/api/', limiter);
 
 // Content Security Policy
 app.use(helmet.contentSecurityPolicy({
@@ -35,7 +37,7 @@ app.use(helmet.contentSecurityPolicy({
     defaultSrc: ["'self'"],
     scriptSrc: ["'self'", "code.jquery.com", "cdn.jsdelivr.net"],
     styleSrc: ["'self'", "'unsafe-inline'", "cdn.jsdelivr.net"],
-    imgSrc: ["'self'", "data:", "http://localhost:4000"],
+    imgSrc: ["'self'", "data:", "http://peakperformance.wlodzimierrr.co.uk", "https://peakperformance.wlodzimierrr.co.uk"],
     fontSrc: ["'self'", "cdn.jsdelivr.net"],
     connectSrc: ["'self'"],
     frameSrc: ["'self'"],
@@ -51,7 +53,7 @@ app.use('/images', express.static('uploads/images'));
 app.post('/api/upload', upload.single('product'), (req, res) => {
   res.json({
     success: 1,
-    image_url: `http://localhost:${PORT}/images/${req.file.filename}`,
+    image_url: `https://images.peakperformance.wlodzimierrr.co.uk/images/${req.file.filename}`,
   });
 });
 
