@@ -67,7 +67,7 @@ exports.getNewCollection = async (req, res, next) => {
 
 exports.getPopularProducts = async (req, res, next) => {
     try {
-        const products = await ProductModel.find({ category: "Road Bikes" });
+        const products = await ProductModel.find({ });
         const popularProducts = products.slice(0, 4);
         res.json({ success: true, popularProducts });
     } catch (error) {

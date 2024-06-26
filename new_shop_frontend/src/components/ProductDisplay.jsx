@@ -22,7 +22,7 @@ const ProductDisplay = (props) => {
           <img src={product.image} alt="productImg" className='max-h-[84px] rounded-lg bg-gray-10' crossOrigin="anonymous"/>
         </div>
         <div className='max-h-[355px] w-auto flex'>
-          <img src={product.image} alt="bigImg" className='rounded-xl bg-gray-10'/>
+          <img src={product.image} alt="bigImg" className='rounded-xl bg-gray-10' crossOrigin="anonymous"/>
         </div>
       </div>
       {/* {right side} */}
