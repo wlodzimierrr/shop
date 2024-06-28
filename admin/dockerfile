@@ -1,0 +1,20 @@
+FROM node:lts-alpine
+
+# Set working directory
+WORKDIR /src
+
+# Install dependencies
+COPY package*.json ./
+RUN npm install
+
+# Copy the rest of the application code
+COPY . .
+
+# Build the react application
+RUN npm run build
+
+# Expose the port 4242
+EXPOSE 5252
+
+# Start the React application
+CMD ["npm", "run", "preview"]
