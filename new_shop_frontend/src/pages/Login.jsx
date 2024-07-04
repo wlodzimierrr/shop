@@ -1,134 +1,98 @@
 import React, { useContext, useState } from 'react';
-
-// Contexts
+import { useForm } from "react-hook-form";
 import { AuthContext } from '../context/AuthContext';
 
 const Login = () => {
-  
   const [state, setState] = useState("Login");
-  const { login, signup } = useContext(AuthContext)
-  const [formData, setFormData] = useState({
-    email: '',
-    username: '',
-    password: '',
-    firstName: '',
-    lastName: '',
-    addressLine1: '',
-    addressLine2: '',
-    city: '',
-    county: '',
-    postcode:'',
-  });
+  const { login, signup } = useContext(AuthContext);
+  
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
 
-  const changeHandler = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const onSubmit = async (data) => {
     if (state === "Login") {
-      await login(formData); 
+      await login(data);
     } else {
-      await signup(formData); 
+      await signup(data);
     }
+    reset();
     window.location.replace('/');
   };
-  
+
   return (
-    <section className="max-padd-container flexCenter flex-col pt-32 bg-primary">
-      <div className="w-full max-w-[666px] h-[600px] bg-primary m-auto px-14">
+    <section className="max-padd-container flexCenter flex-col pt-4 bg-primary">
+      <div className="w-full max-w-[666px] h-[800px] bg-primary m-auto px-14">
         <h3 className="h3">{state}</h3>
-        <form className="flex flex-col gap-2 mt-2" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-2 mt-2" onSubmit={handleSubmit(onSubmit)}>
           {state === "Sign Up" && (
             <>
+              {errors.username && <p className="text-red-500">Username is required</p>}
               <input
-                name="username"
-                type="text"
-                value={formData.username}
-                onChange={changeHandler}
+                {...register("username", { required: true })}
                 placeholder="Username"
                 className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
                 autoComplete="username"
               />
+              {errors.firstName && <p className="text-red-500">First Name is required</p>}
               <input
-                name="firstName"
-                type="text"
-                value={formData.firstName}
-                onChange={changeHandler}
+                {...register("firstName", { required: true })}
                 placeholder="First Name"
                 className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
                 autoComplete="given-name"
               />
+              {errors.lastName && <p className="text-red-500">Last Name is required</p>}
               <input
-                name="lastName"
-                type="text"
-                value={formData.lastName}
-                onChange={changeHandler}
+                {...register("lastName", { required: true })}
                 placeholder="Last Name"
                 className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
                 autoComplete="family-name"
               />
+              {errors.addressLine1 && <p className="text-red-500">Address Line 1 is required</p>}
               <input
-                name="addressLine1"
-                type="text"
-                value={formData.addressLine1}
-                onChange={changeHandler}
+                {...register("addressLine1", { required: true })}
                 placeholder="Address Line 1"
                 className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
                 autoComplete="address-line1"
               />
+
               <input
-                name="addressLine2"
-                type="text"
-                value={formData.addressLine2}
-                onChange={changeHandler}
+                {...register("addressLine2")}
                 placeholder="Address Line 2"
                 className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
                 autoComplete="address-line2"
               />
+              {errors.city && <p className="text-red-500">City is required</p>}
               <input
-                name="city"
-                type="text"
-                value={formData.city}
-                onChange={changeHandler}
+                {...register("city", { required: true })}
                 placeholder="City"
                 className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
                 autoComplete="address-level2"
               />
               <input
-                name="county"
-                type="text"
-                value={formData.county}
-                onChange={changeHandler}
+                {...register("county",)}
                 placeholder="County"
                 className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
                 autoComplete="address-level1"
               />
+              {errors.postcode && <p className="text-red-500">Postcode is required</p>}
               <input
-                name="postcode"
-                type="text"
-                value={formData.postcode}
-                onChange={changeHandler}
+                {...register("postcode", { required: true })}
                 placeholder="Postcode"
                 className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
                 autoComplete="postal-code"
-              />
-            </>
+              />            </>
           )}
+          {errors.email && <p className="text-red-500">Email is required</p>}
           <input
-            name="email"
+            {...register("email", { required: true })}
             type="email"
-            value={formData.email}
-            onChange={changeHandler}
             placeholder="Your Email"
             className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
             autoComplete="email"
           />
+          {errors.password && <p className="text-red-500">Password is required</p>}
           <input
-            name="password"
+            {...register("password", { required: true })}
             type="password"
-            value={formData.password}
-            onChange={changeHandler}
             placeholder="Password"
             className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
             autoComplete="new-password"
