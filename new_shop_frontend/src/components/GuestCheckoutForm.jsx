@@ -1,29 +1,16 @@
 import React, { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { useStripe, useElements, PaymentElement } from '@stripe/react-stripe-js';
 
 const GuestCheckoutForm = ({ onOrderSuccess }) => {
-  
   const stripe = useStripe();
   const elements = useElements();
-  const [formData, setFormData] = useState({
-    email: '',
-    firstName: '',
-    lastName: '',
-    addressLine1: '',
-    addressLine2: '',
-    city: '',
-    county: '',
-    postcode: '',
-  });
+  
+  const { register, handleSubmit, reset, formState: { errors } } = useForm();
+
   const [errorMessage, setErrorMessage] = useState(null);
 
-  const changeHandler = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
+  const onSubmit = async (data) => {
     if (!stripe || !elements) {
       return;
     }
@@ -40,81 +27,73 @@ const GuestCheckoutForm = ({ onOrderSuccess }) => {
       setErrorMessage(error.message);
     } else {
       if (paymentIntent.status === 'succeeded') {
-        onOrderSuccess(paymentIntent, formData);
+        onOrderSuccess(paymentIntent, data);
+        reset();
       }
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} id="checkout-form" className="flex flex-col gap-2">
+    <form onSubmit={handleSubmit(onSubmit)} id="checkout-form" className="flex flex-col gap-2">
+      {errors.email && <p className="text-red-500">Email is required</p>}
       <input
-        name="email"
+        {...register("email", { required: true })}
         type="text"
-        value={formData.email}
-        onChange={changeHandler}
         placeholder="Email"
         className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
         autoComplete="given-email"
       />
+      {errors.firstName && <p className="text-red-500">First Name is required</p>}
       <input
-        name="firstName"
+        {...register("firstName", { required: true })}
         type="text"
-        value={formData.firstName}
-        onChange={changeHandler}
         placeholder="First Name"
         className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
         autoComplete="given-name"
       />
+      {errors.lastName && <p className="text-red-500">Last Name is required</p>}
       <input
-        name="lastName"
+        {...register("lastName", { required: true })}
         type="text"
-        value={formData.lastName}
-        onChange={changeHandler}
         placeholder="Last Name"
         className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
         autoComplete="family-name"
       />
+      {errors.addressLine1 && <p className="text-red-500">Address Line 1 is required</p>}
       <input
-        name="addressLine1"
+        {...register("addressLine1", { required: true })}
         type="text"
-        value={formData.addressLine1}
-        onChange={changeHandler}
         placeholder="Address Line 1"
         className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
         autoComplete="address-line1"
       />
       <input
-        name="addressLine2"
+        {...register("addressLine2")}
         type="text"
-        value={formData.addressLine2}
-        onChange={changeHandler}
         placeholder="Address Line 2"
         className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
         autoComplete="address-line2"
       />
+      {errors.city && <p className="text-red-500">City is required</p>}
       <input
-        name="city"
+        {...register("city", { required: true })}
         type="text"
-        value={formData.city}
-        onChange={changeHandler}
         placeholder="City"
         className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
         autoComplete="address-level2"
       />
+      {errors.county && <p className="text-red-500">County is required</p>}
       <input
-        name="county"
+        {...register("county", { required: true })}
         type="text"
-        value={formData.county}
-        onChange={changeHandler}
         placeholder="County"
         className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
         autoComplete="address-level1"
       />
+      {errors.postcode && <p className="text-red-500">Postcode is required</p>}
       <input
-        name="postcode"
+        {...register("postcode", { required: true })}
         type="text"
-        value={formData.postcode}
-        onChange={changeHandler}
         placeholder="Postcode"
         className="h-8 w-full pl-5 bg-white outline-none rounded-xl text-sm"
         autoComplete="postal-code"

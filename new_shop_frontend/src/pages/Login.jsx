@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <section className="max-padd-container flexCenter flex-col pt-4 bg-primary">
+    <section className="max-padd-container flexCenter flex-col pt-24 bg-primary">
       <div className="w-full max-w-[666px] h-[800px] bg-primary m-auto px-14">
         <h3 className="h3">{state}</h3>
         <form className="flex flex-col gap-2 mt-2" onSubmit={handleSubmit(onSubmit)}>
@@ -122,10 +122,10 @@ const Login = () => {
             </span>
           </p>
         )}
-        <div className="flexStart mt-4 gap-3">
+        {/* <div className="flexStart mt-4 gap-3">
           <input type="checkbox" name="" id="" />
           <p>By continuing, I agree to the terms of use & privacy policy</p>
-        </div>
+        </div> */}
       </div>
     </section>
   );
