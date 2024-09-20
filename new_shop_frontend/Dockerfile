@@ -1,7 +1,7 @@
 FROM node:lts-alpine
 
 # Set working directory
-WORKDIR /src
+WORKDIR /shop/new_shop_frontend
 
 # Install dependencies
 COPY package*.json ./
